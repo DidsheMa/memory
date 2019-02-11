@@ -241,7 +241,7 @@ class StimulusPresentation(QOpenGLWidget):
 
             if self.TARGET_INDEX >= 0:
                print(colored("Target index is %s." % self.TARGET_INDEX, 'cyan'))
-               im = self.images[self.imageOrder[int(self.TARGET_INDEX)]]
+               #im = self.images[self.imageOrder[int(self.TARGET_INDEX)]]
 
                side = min(self.width(), self.height()*0.5)
                preserve_aspect = True

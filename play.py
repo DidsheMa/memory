@@ -16,17 +16,13 @@ class P3_classify():
         self.samples = None
         self.hasPCA = False
         self.isi = 120 # speller stim interval in ms
-        self.stimnum = 8
+        self.stimnum = 4
         self.trials = 20
         self.do_channel_mask = False
         self.mode = None
 
         self.loadData()
-
-        if self.mode == PresentationMode.SPELLER_MODE:
-            self.images = int((self.stimnum / 2) ** 2)
-        else:
-            self.images = self.stimnum
+        self.images = int(((self.stimnum/2) ** 2)/2)
 
         self.lslrec = Lslrecorder()
         if(self.lslrec.findStream() == -1):
@@ -52,6 +48,8 @@ class P3_classify():
 
     def detectTargets(self):
         other = -1 
+        first_target = -1
+        found = 0
         for i in range(self.trials):
             s = 1
             target = -1
@@ -83,18 +81,25 @@ class P3_classify():
             if self.mode == PresentationMode.SPELLER_MODE:
                 #    % Expand row/col to linear index [0...(stimnum/2)^2-1]
                 target = (target[1])*(self.stimnum/2)+target[0]
+            target = int(target)
             print(colored("The current target has index %s." % target, 'magenta'))
             (index, turned) = self.presentation.fields[target]
             if not turned:
                  self.presentation.fields[target] = (index, True)
                  self.presentation.show_target(target, 'Detected Target')
                  if other >= 0:
-                     if other != target:
+                     if other != index:
                          self.presentation.fields[target] = (index, False)
                          (other_index, turned) = self.presentation.fields[other]
-                         self.presentation.fields[other] = (other_index, False)
+                         self.presentation.fields[first_target] = (other_index, False)
+                         other = -1            
+                     else:
+                         other = -1
+                         found += 1
+                         if found == self.images: return
                  else:
-                     other = target
+                     other = index
+                     first_target = target
 
 
     def processSubtrial(self, on, fseq, s, TP):
