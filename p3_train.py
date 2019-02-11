@@ -13,12 +13,12 @@ from termcolor import colored
 
 class P3_train():
     def __init__(self):
-        ###########################################################
+        ##############################################8#############
         # USER CONFIGURATION:
         # SPECIFY PARAMETERS FOR THE EXPERIMENT
         ###########################################################
         self.prefix = "data/"
-        self.do_channel_mask = True # needed when using SMARTING amplifier
+        self.do_channel_mask = False # needed when using SMARTING amplifier
         self.folding = 5  # should be multiple of trial number
 
 
