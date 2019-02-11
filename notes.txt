@@ -1,0 +1,3 @@
+mne toolbox (pip install --user mne)
+atom editor (./vol/pgbci/tools/atomedit/usr/bin/atom)
+python files (/vol/pgbci)
