@@ -20,7 +20,7 @@ class P3_train():
         ###########################################################
         self.data_prefix = 'data/' # Full path to directory where to save the data
         self.images_prefix = 'speller_images/' # Full path to directory where the stimulus images are located
-        self.trials = 3
+        self.trials = 5
         self.subtrials = 10
         self.stimnum = 8
         # Possible modes:
