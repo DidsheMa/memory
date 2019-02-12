@@ -16,7 +16,7 @@ class P3_classify():
         self.samples = None
         self.hasPCA = False
         self.isi = 120 # speller stim interval in ms
-        self.stimnum = 4
+        self.stimnum = 8
         self.trials = 20
         self.do_channel_mask = False
         self.mode = None
@@ -90,8 +90,7 @@ class P3_classify():
                  if other >= 0:
                      if other != index:
                          self.presentation.fields[target] = (index, False)
-                         (other_index, turned) = self.presentation.fields[other]
-                         self.presentation.fields[first_target] = (other_index, False)
+                         self.presentation.fields[first_target] = (other, False)
                          other = -1            
                      else:
                          other = -1
