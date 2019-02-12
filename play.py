@@ -25,7 +25,7 @@ class P3_classify():
         self.images = int(((self.stimnum/2) ** 2)/2)
 
         self.lslrec = Lslrecorder()
-        if(self.lslrec.findStream() == -1):
+        if(self.lslrec.findStream(hostname="dynamite") == -1):
             return
         if self.do_channel_mask is True:
             self.channels = 9
@@ -37,7 +37,7 @@ class P3_classify():
 
         # init speller-mode with image path and inter-stimulus-interval,
         self.presentation.initialize(path=self.images_prefix, inter_stimulus_interval=120,
-                                     n_images=self.images, mode=self.mode)
+                                     n_images=8, mode=self.mode)
 
         # show window
         self.presentation.show()

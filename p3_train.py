@@ -1,7 +1,7 @@
 import numpy as np
 from auxiliary import *
 import mne.filter as filter
-from StimulusPresentation import PresentationMode
+from Memory import PresentationMode
 from termcolor import colored
 
 #################################################################################

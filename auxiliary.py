@@ -224,7 +224,7 @@ def class_calcTPscore_sequence(ys, flashseq, target):
         TPscore = maxval[sbtrix]  # return the score at successfull subtrial
 
         # Calculate the brightness of the matrix for the winnning subtrial
-        M_tp = sum(Scale(TPprogressive[:, sbtrix], 0, 1))
+        M_tp = sum(Scale(TPprogressive[sbtrix,:], 0, 1))
     else:
         sbtrix = -1
         TPscore = 0

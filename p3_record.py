@@ -35,14 +35,14 @@ class P3_train():
         # YOU ARE DOING !!!
         ###########################################################
 
-        self.images = self.stimnum
+        self.images = int(((self.stimnum/2) ** 2))
 
         # important lists
         self.onsets = []
         self.flashseq = []
         self.targets = []
         while len(self.targets) < self.trials:
-            self.targets += list(range(0, self.stimnum))
+            self.targets += list(range(0, self.stimnum*2))
         shuffle(self.targets)
         self.targets = self.targets[0: self.trials]
 
@@ -50,7 +50,7 @@ class P3_train():
         # ording data + timestamps
         self.lslrec = Lslrecorder()
         print("Created lsl recorder")
-        if self.lslrec.findStream() == -1:
+        if self.lslrec.findStream(hostname="dynamite") == -1:
             return
         self.lslrec.startRec()
 
@@ -60,7 +60,7 @@ class P3_train():
         self.doPresentation()
 
         # shut everything down and save gathered data to data directory
-        time.sleep(30)
+        time.sleep(2)
         self.lslrec.stopRec()
         self.saveData()
         sys.exit(app.exec_())
@@ -69,7 +69,7 @@ class P3_train():
         # init speller-mode with image path and inter-stimulus-interval,
         # number of stimuli to load, and presentation mode
         self.presentation.initialize(path=self.images_prefix, inter_stimulus_interval=120,
-                                     n_images=self.images, mode=self.mode)
+                                     n_images=int(self.images/2), mode=self.mode)
         self.presentation.show()
 
         for trial in range(0, self.trials):
