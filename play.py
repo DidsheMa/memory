@@ -17,7 +17,7 @@ class P3_classify():
         self.hasPCA = False
         self.isi = 120 # speller stim interval in ms
         self.stimnum = 8
-        self.trials = 20
+        self.trials = 50
         self.do_channel_mask = False
         self.mode = None
 
@@ -37,7 +37,7 @@ class P3_classify():
 
         # init speller-mode with image path and inter-stimulus-interval,
         self.presentation.initialize(path=self.images_prefix, inter_stimulus_interval=120,
-                                     n_images=8, mode=self.mode)
+                                     n_images=self.images, mode=self.mode)
 
         # show window
         self.presentation.show()
